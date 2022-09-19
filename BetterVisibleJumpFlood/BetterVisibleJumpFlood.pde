@@ -1,10 +1,29 @@
 ArrayList<Point> seeds = new ArrayList();
 int stepSize;
+
+int gapSize = 1;
 int rectSize = 10;
+
+
 color black = color(0);
+color white = color(255);
 
 void setup() {
-  size(500,500);
+  size(500, 500);
+  
+  noStroke();
+  
+  fill(white);
+  
+  for (int i = 0; i < 50; i++) {
+    rect(0, i * (rectSize + gapSize) - gapSize, 500, gapSize);
+  }
+  
+  for (int i = 0; i < 50; i++) {
+    rect(i * (rectSize + gapSize) - gapSize, 0, gapSize, 500);
+  }
+  
+  fill(black);
   
   //define starting point
   definePoint(20, 20);
@@ -12,7 +31,7 @@ void setup() {
 }
 
 void draw() {
-  if (stepSize >= 1) {  
+  if (stepSize >= 1) {
     
     //delay to visualize
     delay(1000);
@@ -42,8 +61,7 @@ void definePoint(int x, int y) {
   Point point = new Point(x, y);
   seeds.add(point);
   
-  fill(black);
-  rect(x * (rectSize + 2), y * (rectSize + 2), rectSize, rectSize);
+  rect(x * (rectSize + gapSize), y * (rectSize + gapSize), rectSize, rectSize);
 }
 
 class Point {
